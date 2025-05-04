@@ -6,13 +6,13 @@ function HomePage() {
     <div className="bg-gray-100 min-h-screen flex flex-col items-center justify-center px-4">
       {/* Ana Başlık */}
       <h1 className="text-4xl md:text-6xl font-bold text-gray-800 mb-4">
-        Miraç Market'e Hoşgeldiniz
+      Karamanlar Ticaret’e Hoş Geldiniz
       </h1>
 
       {/* Alt açıklama */}
       <p className="text-lg md:text-xl text-gray-600 mb-8 text-center max-w-2xl">
-        Toptan fiyatlarla kaliteli gıda ürünlerini hızlı teslimatla kapınıza getiriyoruz.
-        Uygun fiyatlar, güvenilir hizmet burada!
+      Karamanlar Ticaret, toptan ve perakende gıda, bakliyat, temizlik ve hırdavat ürünlerinde
+      güvenilir ve ekonomik çözümler sunar.
       </p>
 
       {/* Buton */}
