@@ -53,7 +53,7 @@ const ProductList = () => {
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center px-6 py-12">
           <div className="flex-1">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-blue-700">
-              Miraç Market'e Hoşgeldiniz!
+            Karamanlar Ticaret'e Hoşgeldiniz!
             </h1>
             <p className="text-gray-600 mb-6">
               En taze ürünler, en uygun fiyatlarla burada. Şimdi keşfetmeye başla!
@@ -66,7 +66,7 @@ const ProductList = () => {
           <div className="flex-1 hidden md:block">
             <img
               src="/banner.jpg" // 📷 Public klasörüne bir banner.jpg koy!
-              alt="Miraç Market Banner"
+              alt="Karamanlar Ticaret Banner"
               className="w-full rounded-lg"
             />
           </div>

@@ -8,7 +8,7 @@ const Footer = () => {
         
         {/* Copyright */}
         <p className="mb-4 md:mb-0 text-center md:text-left">
-          &copy; {new Date().getFullYear()} Miraç Market. Tüm hakları saklıdır.
+          &copy; {new Date().getFullYear()} Karamanlar Ticaret. Tüm hakları saklıdır.
         </p>
         
         {/* Menü Linkleri */}
