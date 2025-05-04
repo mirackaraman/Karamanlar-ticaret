@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Setting = require("../models/Setting");
-const { verifyAdmin } = require("../middleware/auth"); // JWT admin kontrol middleware’in varsa
+const { protect, admin } = require("../middleware/auth");
 
 // GET hedefi al
 router.get("/sales-goal", async (req, res) => {
@@ -9,8 +9,8 @@ router.get("/sales-goal", async (req, res) => {
   res.json({ salesGoal: setting?.salesGoal || 20000 });
 });
 
-// PUT hedefi güncelle
-router.put("/sales-goal", verifyAdmin, async (req, res) => {
+// PUT hedefi güncelle (sadece admin)
+router.put("/sales-goal", protect, admin, async (req, res) => {
   const { salesGoal } = req.body;
   let setting = await Setting.findOne();
   if (!setting) {

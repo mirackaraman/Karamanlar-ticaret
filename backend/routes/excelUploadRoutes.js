@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require('multer');
 const xlsx = require('xlsx');
 const Product = require('../models/Product');
-const { protect, admin } = require('../middleware/authMiddleware');
+const { protect, admin } = require('../middleware/auth');
 
 // Multer konfigürasyonu (memory storage)
 const storage = multer.memoryStorage();

@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Order = require("../models/Order");
-const { protect, admin } = require("../middleware/authMiddleware");
+const { protect, admin } = require("../middleware/auth");
 const logAdminAction = require("../utils/logAdminAction"); // ✅ Admin loglama
 
 // ✅ Sipariş oluştur (korumalı)

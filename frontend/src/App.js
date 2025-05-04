@@ -36,7 +36,9 @@ import AdminTopProducts from "./pages/AdminTopProducts";
 import AdminUsersPage from "./pages/AdminUsersPage";
 import AdminExcelUploadPage from "./pages/AdminExcelUploadPage";
 import AdminFeedbackPage from "./pages/AdminFeedbackPage";
-import AdminLogsPage from "./pages/admin/AdminLogsPage";
+import AdminLogsPage from "./pages/AdminLogsPage";
+
+
 
 function App() {
   return (

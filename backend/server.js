@@ -2,12 +2,17 @@ const express = require("express");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const connectDB = require("./config/connectDB");
+
 const uploadRoutes = require("./routes/uploadRoutes");
-const { protect, admin } = require("./middleware/authMiddleware"); // ✅
+const { protect, admin } = require("./middleware/auth");
 const feedbackRoutes = require("./routes/feedbackRoutes");
 const excelUploadRoutes = require("./routes/excelUploadRoutes");
 const settingsRoutes = require("./routes/settingsRoutes");
-const uploadexcelRoutes = require("./routes/uploadexcelRoutes");
+const adminRoutes = require("./routes/adminRoutes");
+const authRoutes = require("./routes/authRoutes");
+const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
+const orderRoutes = require("./routes/orderRoutes");
 
 dotenv.config();
 connectDB();
@@ -21,18 +26,18 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-// ROUTES
-app.use("/api/auth", require("./routes/authRoutes"));
-app.use("/api/users", require("./routes/userRoutes")); // ✅ düzelttik
-app.use("/api/products", require("./routes/productRoutes"));
-app.use("/api/orders", require("./routes/orderRoutes"));
+// ✅ ROUTES
+app.use("/api/auth", authRoutes);
+app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
+app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/feedback", feedbackRoutes);
-app.use('/api/uploadexcel', excelUploadRoutes);
+app.use("/api/uploadexcel", excelUploadRoutes);
 app.use("/api/settings", settingsRoutes);
-app.use("/api/uploadexcel", uploadexcelRoutes);
-app.use("/api/admin", require("./routes/adminRoutes"));
+app.use("/api/admin", adminRoutes);
 
+// ✅ Test route (opsiyonel)
 app.get("/api/admin", protect, admin, (req, res) => {
   res.json({ message: "Admin Paneli" });
 });

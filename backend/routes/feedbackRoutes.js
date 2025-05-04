@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const Feedback = require("../models/Feedback");
-const { protect, admin } = require("../middleware/authMiddleware");
+const { protect, admin } = require("../middleware/auth");
 
 // Kullanıcı mesaj gönderebilir
 router.post("/", async (req, res) => {
