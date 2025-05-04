@@ -22,7 +22,17 @@ const Header = () => {
   return (
     <header className="bg-white shadow p-4 sticky top-0 z-50">
       <div className="flex items-center justify-between max-w-6xl mx-auto">
-        <h1 className="text-xl font-bold text-blue-600">Karamanlar Ticaret</h1>
+        {/* Logo + Marka Adı */}
+        <Link to="/" className="flex items-center gap-2">
+          <img
+            src="/karamanlar-logo.jpg"
+            alt="Karamanlar Ticaret"
+            className="h-10 w-auto rounded"
+          />
+          <span className="text-xl font-bold text-blue-600">
+            Karamanlar Ticaret
+          </span>
+        </Link>
 
         {/* Hamburger - Mobil */}
         <button onClick={toggleMenu} className="sm:hidden text-gray-700">
