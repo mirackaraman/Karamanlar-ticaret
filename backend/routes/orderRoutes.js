@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Order = require("../models/Order");
 const { protect, admin } = require("../middleware/authMiddleware");
+const logAdminAction = require("../utils/logAdminAction"); // ✅ Admin loglama
 
 // ✅ Sipariş oluştur (korumalı)
 router.post("/", protect, async (req, res) => {
@@ -41,7 +42,6 @@ router.get("/", protect, admin, async (req, res) => {
   if (keyword) {
     filter.$or = [
       { _id: { $regex: keyword, $options: "i" } },
-      // kullanıcı adı filtrelemesi aggregate ile yapılabilir (ileride)
     ];
   }
 
@@ -91,6 +91,10 @@ router.put("/:id/status", protect, admin, async (req, res) => {
     }
 
     const updatedOrder = await order.save();
+
+    // ✅ Log ekle
+    await logAdminAction(req.user._id, "Sipariş Durumu Güncellendi", `Sipariş ID: ${order._id}, Yeni Durum: ${order.status}`);
+
     res.json(updatedOrder);
   } else {
     res.status(404).json({ message: "Sipariş bulunamadı" });
@@ -177,6 +181,28 @@ router.get("/stats/top-products", protect, admin, async (req, res) => {
     res.json(topProducts);
   } catch (err) {
     res.status(500).json({ message: "Top ürünler alınamadı" });
+  }
+});
+
+// ✅ Siparişe not ekle veya güncelle (admin)
+router.put("/:id/note", protect, admin, async (req, res) => {
+  try {
+    const order = await Order.findById(req.params.id);
+
+    if (!order) {
+      return res.status(404).json({ message: "Sipariş bulunamadı" });
+    }
+
+    order.note = req.body.note || "";
+    const updatedOrder = await order.save();
+
+    // ✅ Log ekle
+    await logAdminAction(req.user._id, "Sipariş Notu Güncellendi", `Sipariş ID: ${order._id}`);
+
+    res.json({ message: "Not kaydedildi", note: updatedOrder.note });
+  } catch (error) {
+    console.error("Not güncelleme hatası:", error);
+    res.status(500).json({ message: "Not güncellenemedi" });
   }
 });
 

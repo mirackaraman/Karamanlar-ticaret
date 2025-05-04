@@ -49,6 +49,12 @@ const orderSchema = mongoose.Schema(
       enum: ["Hazırlanıyor", "Kargoda", "Teslim Edildi", "İade Talebi", "İptal Edildi"],
       default: "Hazırlanıyor",
     },
+
+    // ✅ Yeni Eklenen Not Alanı
+    note: {
+      type: String,
+      default: "",
+    },
   },
   { timestamps: true }
 );

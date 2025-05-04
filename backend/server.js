@@ -6,6 +6,8 @@ const uploadRoutes = require("./routes/uploadRoutes");
 const { protect, admin } = require("./middleware/authMiddleware"); // ✅
 const feedbackRoutes = require("./routes/feedbackRoutes");
 const excelUploadRoutes = require("./routes/excelUploadRoutes");
+const settingsRoutes = require("./routes/settingsRoutes");
+const uploadexcelRoutes = require("./routes/uploadexcelRoutes");
 
 dotenv.config();
 connectDB();
@@ -27,6 +29,9 @@ app.use("/api/orders", require("./routes/orderRoutes"));
 app.use("/api/upload", uploadRoutes);
 app.use("/api/feedback", feedbackRoutes);
 app.use('/api/uploadexcel', excelUploadRoutes);
+app.use("/api/settings", settingsRoutes);
+app.use("/api/uploadexcel", uploadexcelRoutes);
+app.use("/api/admin", require("./routes/adminRoutes"));
 
 app.get("/api/admin", protect, admin, (req, res) => {
   res.json({ message: "Admin Paneli" });

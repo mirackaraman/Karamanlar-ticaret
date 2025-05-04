@@ -10,10 +10,15 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       unique: true,
+      lowercase: true,
     },
     password: {
       type: String,
       required: true,
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
     },
   },
   {
@@ -21,8 +26,5 @@ const userSchema = new mongoose.Schema(
   }
 );
 
-// Eğer daha önce "User" modeli tanımlandıysa tekrar tanımlamayı önler
 const User = mongoose.models.User || mongoose.model("User", userSchema);
-
-// Burada userModel olarak export ediyoruz
 module.exports = User;
